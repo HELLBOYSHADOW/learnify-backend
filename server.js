@@ -14,7 +14,7 @@ app.use(express.json({ limit: "5mb" }));
 // CONFIG
 // ============================================================
 
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 // Stores YouTube transcript + summary temporarily.
 // NOTE: This is cleared whenever the server restarts.
