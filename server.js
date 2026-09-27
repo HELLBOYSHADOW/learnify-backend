@@ -982,6 +982,31 @@ app.post("/extract-pdf", async (req, res) => {
   }
 });
 
+app.get("/test-transcript/:videoId", async (req, res) => {
+  try {
+    const videoId = req.params.videoId;
+
+    console.log(`🧪 Testing transcript: ${videoId}`);
+
+    const transcript = await YoutubeTranscript.fetchTranscript(videoId);
+
+    res.json({
+      success: true,
+      videoId,
+      transcriptLength: transcript?.length || 0,
+      sample: transcript?.slice(0, 3) || []
+    });
+  } catch (error) {
+    console.error("❌ Transcript test failed:", error);
+
+    res.status(500).json({
+      success: false,
+      videoId: req.params.videoId,
+      error: error.message
+    });
+  }
+});
+
 
 // ============================================================
 // START SERVER
