@@ -1,3 +1,5 @@
+console.log("Node version:", process.version);
+console.log("youtube-transcript version:", require("youtube-transcript/package.json").version);
 require("dotenv").config();
 
 const express = require("express");
